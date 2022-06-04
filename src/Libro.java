@@ -13,6 +13,18 @@ public class Libro {
         this.generos = new ArrayList<>();
     }
 
+    public String getTitulo(){
+        return this.titulo;
+    }
+
+    public String getAutor(){
+        return this.autor;
+    }
+
+    public int cantPaginas(){
+        return this.cantidadPaginas;
+    }
+
     public void addGeneros(String genero){
         generos.add(genero);
     }

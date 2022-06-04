@@ -16,6 +16,12 @@ public class SameGenNode {
         return left;
     }
 
+    public ArrayList<Libro> getLibros(){
+        ArrayList<Libro> copiaLibros=new ArrayList<>();
+        copiaLibros.addAll(libros);
+        return copiaLibros;
+    }
+
     public void setLeft(SameGenNode left) {
         this.left = left;
     }

@@ -22,26 +22,29 @@ public class GenIndex {
         return (root.getGenero());
     }
 
-    public boolean hasElement(String value) {
+    public ArrayList<Libro> hasElement(String value) {
         if (this.getRoot() == null) {
-            return false;
+            return (new ArrayList<>());
         } else {
             return hasElement(this.root, value);
         }
     }
 
-    private boolean hasElement(SameGenNode n, String value) {
+    private ArrayList<Libro> hasElement(SameGenNode n, String value) {
         if (n.getGenero().equals(value)) {
-            return true;
-        } else {
-            if (n.getLeft() != null) {
+            return n.getLibros();
+        }
+
+        else {
+            if ((n.getGenero().compareTo(value)>0) && n.getLeft() != null) {
                 return hasElement(n.getLeft(), value);
             }
-            if (n.getRight() != null) {
+            if ((n.getGenero().compareTo(value)<0)&& n.getRight() != null) {
                 return hasElement(n.getRight(), value);
             }
-            return false;
+
         }
+        return n.getLibros();
     }
 
     private void add(SameGenNode gen, String genero, Libro lb) {

@@ -4,14 +4,24 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class CSVReader {
+   private ArrayList<Libro> libros ;
+    private GenIndex elementos;
+    public CSVReader(){
+        this.libros=new ArrayList<>();
+        this.elementos=new GenIndex();
+    }
 
-    public static void main(String[] args) {
-        ArrayList<Libro> libros = new ArrayList<>();
-        GenIndex elementos = new GenIndex();
+  public GenIndex getElementos(){
+        return this.elementos;
+  }
+    public  void leer() {
+
 
         String csvFile = "./dataset1.csv";
         String line = "";
         String cvsSplitBy = ",";
+
+
 
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
             while ((line = br.readLine()) != null) {
