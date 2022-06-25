@@ -26,7 +26,7 @@ public class CSVReader {
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
             while ((line = br.readLine()) != null) {
                 String[] items = line.split(cvsSplitBy);
-                if (!items[2].equals("Paginas")) {//Por què este control?
+                if (!items[2].equals("Paginas")) {
                     String[] listaGeneros = items[3].split(" ");
                     Libro libro = new Libro(items[0], items[1], Integer.parseInt(items[2]));
                     for (String genero : listaGeneros) {

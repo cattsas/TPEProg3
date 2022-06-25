@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class CSVWritter {
 
-    public  void escribir(GenIndex indice) {
+    public  void escribir(GenIndex indice, String genero) {
 
         BufferedReader entrada=new BufferedReader(new InputStreamReader(System.in));
 
@@ -23,14 +23,14 @@ public class CSVWritter {
 
 
 
-            String genero="";
+         /*
             try {
                 System.out.println("Ingrese gènero que desea buscar: ");
                 genero=entrada.readLine();
             }
             catch(Exception error){
                 System.out.println(error);
-            }
+            }*/
 
             ArrayList<Libro> libros=indice.hasElement(genero);
 
