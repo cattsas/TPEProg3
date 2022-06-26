@@ -5,11 +5,11 @@ import java.util.ArrayList;
 
 public class CSVReader  {
 
-  //  private String originPath;
+    private String originPath;
    private ArrayList<Libro> libros ;
     private GenIndex elementos;
-    public CSVReader() {
-    //    this.originPath=originPath;
+    public CSVReader(String originPath){
+        this.originPath=originPath;
         this.libros=new ArrayList<>();
         this.elementos=new GenIndex();
     }
@@ -17,10 +17,10 @@ public class CSVReader  {
   public GenIndex getElementos(){
         return this.elementos;
   }
-    public  void leer(String originPath) {
+    public  void leer() {
 
 
-        String csvFile = originPath;
+        String csvFile = this.originPath;
         String line = "";
         String cvsSplitBy = ",";
 

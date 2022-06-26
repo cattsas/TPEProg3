@@ -43,8 +43,12 @@ public class SameGenNode {
         return this.genero;
     }
 
+    public int cantLibros(){
+        return this.libros.size();
+    }
+
     public String toString() {
-        return genero + " libros: " + libros.size() + "izquierda: "+this.getLeft()+"derecha: "+ this.getRight();
+        return genero + " libros: " + libros.size() + " izquierda: "+this.getLeft()+" derecha: "+ this.getRight();
     }
 
     /*Equals*/

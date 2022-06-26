@@ -3,9 +3,13 @@ public class GenIndex {
     private SameGenNode root;
 
 
+
     public GenIndex() {
         root = null;
+
     }
+
+
 
     public void add(String genero, Libro lb) {
         if (this.root == null) {
@@ -23,6 +27,7 @@ public class GenIndex {
     }
 
     public ArrayList<Libro> hasElement(String value) {
+
         if (this.getRoot() == null) {
             return (new ArrayList<>());
         } else {
@@ -32,18 +37,22 @@ public class GenIndex {
 
     private ArrayList<Libro> hasElement(SameGenNode n, String value) {
         if (n.getGenero().equals(value)) {
+
             return n.getLibros();
         }
 
         else {
             if ((n.getGenero().compareTo(value)>0) && n.getLeft() != null) {
+
                 return hasElement(n.getLeft(), value);
             }
             if ((n.getGenero().compareTo(value)<0)&& n.getRight() != null) {
+
                 return hasElement(n.getRight(), value);
             }
 
         }
+
         return n.getLibros();
     }
 
