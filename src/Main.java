@@ -4,9 +4,12 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) {
     CSVReader reader=new CSVReader();
-    reader.leer();
+    reader.leer("./dataset1.csv");
+        reader.leer("./dataset2.csv");
+        reader.leer("./dataset3.csv");
+        reader.leer("./dataset4.csv");
     GenIndex indice=reader.getElementos();
-    CSVWritter escribir=new CSVWritter();
+    CSVWritter escribir=new CSVWritter("./salida.csv");
 
     BufferedReader entrada=new BufferedReader(new InputStreamReader(System.in));
 

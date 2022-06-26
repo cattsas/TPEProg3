@@ -6,13 +6,19 @@ import java.util.ArrayList;
 
 public class CSVWritter {
 
+    private String path;
+
+    public CSVWritter(String path){
+        this.path=path;
+    }
+
     public  void escribir(GenIndex indice, String genero) {
 
-        BufferedReader entrada=new BufferedReader(new InputStreamReader(System.in));
+      /*  BufferedReader entrada=new BufferedReader(new InputStreamReader(System.in));*/
 
         BufferedWriter bw = null;
         try {
-            File file = new File("./salida.csv");
+            File file = new File(this.path);
             if (!file.exists()) {
                 file.createNewFile();
             }

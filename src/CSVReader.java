@@ -3,10 +3,13 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class CSVReader {
+public class CSVReader  {
+
+  //  private String originPath;
    private ArrayList<Libro> libros ;
     private GenIndex elementos;
-    public CSVReader(){
+    public CSVReader() {
+    //    this.originPath=originPath;
         this.libros=new ArrayList<>();
         this.elementos=new GenIndex();
     }
@@ -14,10 +17,10 @@ public class CSVReader {
   public GenIndex getElementos(){
         return this.elementos;
   }
-    public  void leer() {
+    public  void leer(String originPath) {
 
 
-        String csvFile = "./dataset1.csv";
+        String csvFile = originPath;
         String line = "";
         String cvsSplitBy = ",";
 
