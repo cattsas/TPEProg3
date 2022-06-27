@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 public class GenIndex {
     private SameGenNode root;
+    private int cantIteracciones;
 
 
 
@@ -10,6 +11,13 @@ public class GenIndex {
     }
 
 
+    public int getCantIteracciones() {
+        return cantIteracciones;
+    }
+
+    public void setCantIteracciones(int cantIteracciones) {
+        this.cantIteracciones = cantIteracciones;
+    }
 
     public void add(String genero, Libro lb) {
         if (this.root == null) {
@@ -27,7 +35,7 @@ public class GenIndex {
     }
 
     public ArrayList<Libro> hasElement(String value) {
-
+        this.setCantIteracciones(0);
         if (this.getRoot() == null) {
             return (new ArrayList<>());
         } else {
@@ -37,17 +45,17 @@ public class GenIndex {
 
     private ArrayList<Libro> hasElement(SameGenNode n, String value) {
         if (n.getGenero().equals(value)) {
-
+            this.setCantIteracciones(this.getCantIteracciones()+1);
             return n.getLibros();
         }
 
         else {
             if ((n.getGenero().compareTo(value)>0) && n.getLeft() != null) {
-
+                this.setCantIteracciones(this.getCantIteracciones()+1);
                 return hasElement(n.getLeft(), value);
             }
             if ((n.getGenero().compareTo(value)<0)&& n.getRight() != null) {
-
+                this.setCantIteracciones(this.getCantIteracciones()+1);
                 return hasElement(n.getRight(), value);
             }
 
