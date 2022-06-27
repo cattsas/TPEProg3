@@ -6,11 +6,11 @@ import java.util.ArrayList;
 public class CSVReader  {
 
     private String originPath;
-   private ArrayList<Libro> libros ;
+
     private GenIndex elementos;
     public CSVReader(String originPath){
         this.originPath=originPath;
-        this.libros=new ArrayList<>();
+
         this.elementos=new GenIndex();
     }
 

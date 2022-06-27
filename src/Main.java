@@ -5,6 +5,10 @@ public class Main {
     public static void main(String[] args) {
         CSVReader reader = new CSVReader("./dataset1.csv");
         reader.leer();
+        Timer ti = new Timer();
+        ti.start();
+        System.out.println("Se demoro "+ti.stop()+" segundos en generar el arbol");
+
         BufferedReader entrada = new BufferedReader(new InputStreamReader(System.in));
 
         String genero = "";
