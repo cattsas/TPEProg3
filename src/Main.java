@@ -3,7 +3,8 @@ import java.io.InputStreamReader;
 
 public class Main {
     public static void main(String[] args) {
-
+        CSVReader reader = new CSVReader("./dataset1.csv");
+        reader.leer();
         BufferedReader entrada = new BufferedReader(new InputStreamReader(System.in));
 
         String genero = "";
@@ -13,8 +14,7 @@ public class Main {
         } catch (Exception error) {
             System.out.println(error);
         }
-        CSVReader reader = new CSVReader("./dataset1.csv");
-        reader.leer();
+
         GenIndex indice = reader.getElementos();
         CSVWritter escribir = new CSVWritter("./salida.csv");
         escribir.escribir(indice, genero);
