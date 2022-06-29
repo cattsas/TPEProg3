@@ -37,8 +37,8 @@ public class CSVReader  {
                         this.generos.addArco(listaGeneros[i],listaGeneros[i+1]);
 
                     }
-                        System.out.println(listaGeneros.length);}
-              
+                       /* System.out.println(listaGeneros.length);*/}
+
 
             }
                 System.out.println(generos);

@@ -14,10 +14,17 @@ public class Grafo {
     }
 
     public void addArco(String vertGenOrigen, String vertGenDestino) {
+
         if (vertGeneros.containsKey(vertGenOrigen)){
-          //  ArcoAfin arco=new ArcoAfin(vertGenDestino.g)
-            vertGeneros.get(vertGenOrigen).put(vertGenDestino,1);
+          if (vertGeneros.get(vertGenOrigen).containsKey(vertGenDestino)){
+                Integer numero=(Integer)vertGeneros.get(vertGenOrigen).get(vertGenDestino);
+              vertGeneros.get(vertGenOrigen).replace(vertGenDestino,numero,numero+1);
+              System.out.println("numero: "+numero);
+          }
+          else{
+            vertGeneros.get(vertGenOrigen).put(vertGenDestino,1);}
         }
+
 
     }
 
