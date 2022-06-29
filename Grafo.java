@@ -8,6 +8,8 @@ import java.util.SortedSet;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+import javax.swing.text.html.HTMLDocument.Iterator;
+
 public class Grafo {
     private HashMap<String,HashMap<String,Integer>> vertGeneros;
 
@@ -46,10 +48,14 @@ public class Grafo {
             }
         });
         
-        System.out.println(entryList);
-            
-
-        return null;
+        ArrayList lista = new ArrayList<>();
+        int i = 0;
+        while(i<entryList.size() && i<cantidad ){
+            lista.add(entryList.get(i).getKey());
+            i++;
+        }
+        System.out.println(lista);
+        return lista;
     }
 
 

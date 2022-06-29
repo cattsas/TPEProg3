@@ -12,7 +12,7 @@ public class Indice {
     }
 
     public void obtenerMasBuscados(String genero, int cantidad){
-        this.generos.obtenerAdyacentesOrdenados("informática", 5);
+        this.generos.obtenerAdyacentesOrdenados("informática", 2);
        
     }
 
