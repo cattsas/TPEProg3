@@ -7,6 +7,7 @@ public class Main {
      Indice index = new Indice("Datasets2daEtapa/dataset1.csv");
      index.obtenerDatos();
      index.obtenerMasBuscados("asd", 1);
+     //comentario para push
        // Timer ti = new Timer();
       //  ti.start();
       //  System.out.println("Se demoro "+ti.stop()+" segundos en generar el arbol");
