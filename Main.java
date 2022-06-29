@@ -1,6 +1,6 @@
 public class Main {
     public static void main(String[] args) {
-        CSVReader reader = new CSVReader("Datasets2daEtapa/dataset1.csv");
+        CSVReader reader = new CSVReader("Datasets2daEtapa/dataset3.csv");
         reader.leer();
        // Timer ti = new Timer();
       //  ti.start();
@@ -21,7 +21,7 @@ public class Main {
       //  escribir.escribir(indice, genero);
        // Timer t = new Timer();
       //  t.start();
-        System.out.println(generos);
+       // System.out.println(generos);
        // System.out.println("Se demoro "+t.stop()+" segundos en resolver la búsqueda y se realizaron "+indice.getCantIteracciones()+ " iteraciones");
 
     }
