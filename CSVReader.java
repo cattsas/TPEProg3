@@ -41,7 +41,6 @@ public class CSVReader  {
 
 
             }
-                System.out.println(generos);
             } catch(IOException e){
                 e.printStackTrace();
             }
