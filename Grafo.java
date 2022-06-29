@@ -1,4 +1,12 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.SortedSet;
+import java.util.TreeMap;
+import java.util.TreeSet;
 
 public class Grafo {
     private HashMap<String,HashMap<String,Integer>> vertGeneros;
@@ -28,11 +36,29 @@ public class Grafo {
 
     }
 
+    public ArrayList<String> obtenerAdyacentesOrdenados(String genero, int cantidad){
+        List<Map.Entry<String, Integer>> entryList = new ArrayList<Map.Entry<String, Integer>>(this.vertGeneros.get(genero).entrySet());
+        Collections.sort(entryList, new Comparator<Map.Entry<String, Integer>>() {
+            @Override
+            public int compare(Map.Entry<String, Integer> e1,
+                    Map.Entry<String, Integer> e2) {
+                return -e1.getValue().compareTo(e2.getValue());
+            }
+        });
+        
+        System.out.println(entryList);
+            
+
+        return null;
+    }
+
+
+
     @Override
     public String toString() {
         String cadena="";
         for (HashMap.Entry<String, HashMap<String, Integer>> entry : vertGeneros.entrySet()) {
-            cadena+=("Clave: "+  entry.getKey() + "Valor: " +entry.getValue());
+            cadena+=("Clave: "+  entry.getKey() + " - Valor: " +entry.getValue());
         }
 
     return cadena;

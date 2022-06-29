@@ -1,7 +1,12 @@
+import java.util.ArrayList;
+
 public class Main {
     public static void main(String[] args) {
-        CSVReader reader = new CSVReader("Datasets2daEtapa/dataset1.csv");
-        reader.leer();
+     //   CSVReader reader = new CSVReader("Datasets2daEtapa/dataset1.csv");
+     //   reader.leer();
+     Indice index = new Indice("Datasets2daEtapa/dataset1.csv");
+     index.obtenerDatos();
+     index.obtenerMasBuscados("asd", 1);
        // Timer ti = new Timer();
       //  ti.start();
       //  System.out.println("Se demoro "+ti.stop()+" segundos en generar el arbol");
@@ -16,15 +21,17 @@ public class Main {
      //       System.out.println(error);
      //   }
 
-        Grafo generos = reader.getElementos();
+     //   Grafo generos = reader.getElementos();
        // CSVWritter escribir = new CSVWritter("./salida.csv");
       //  escribir.escribir(indice, genero);
        // Timer t = new Timer();
       //  t.start();
-        System.out.println(generos);
+     //   System.out.println(generos);
        // System.out.println("Se demoro "+t.stop()+" segundos en resolver la búsqueda y se realizaron "+indice.getCantIteracciones()+ " iteraciones");
 
     }
+
+
 }
 //    }
 //}
