@@ -71,6 +71,47 @@ public class Grafo {
             
         return lista;
     }
+
+    
+    public Grafo candidatos(ArrayList<String> candidatos, String genero, int tiempo){
+        
+        Solucion solucion = new Solucion(tiempo);
+        //tiene que estar ordenado el de candidatos
+        while(!candidatos.isEmpty() && !solucion.esSolucion()){
+            ArcoAfin tmp = seleccionar(candidatos, genero);
+            candidatos.remove(tmp.getGenDestino());
+            solucion.add(tmp);
+            solucion.setSuma(tmp.getOcurrencias());
+            genero = tmp.getGenDestino();
+        }
+        if(solucion.esSolucion()){
+           return solucion.getSolucion();
+        }
+        return null;
+    }
+
+    public ArcoAfin seleccionar(ArrayList<String> candidatos, String genero){
+        ArrayList<String> adyacentes = new ArrayList<>();
+        String valorText = " ";
+        Integer valorInt = 0;
+        adyacentes.addAll(this.obtenerAdyacentesOrdenados(genero, 1));
+        
+        for (Map.Entry<String, Integer> ady : this.vertGeneros.get(genero).entrySet()) {
+           
+            if(adyacentes.get(0).equals(ady.getKey())){
+            valorText = (String)ady.getKey();
+
+            valorInt = (Integer)ady.getValue();
+            }
+
+        }       
+
+        ArcoAfin arco = new ArcoAfin(genero, valorText, valorInt);
+        return arco;
+    }
+
+
+    
     /* 
     public ArrayList<String> caminoMayorPeso(String origen){
         this.estado.clearMayor();;
@@ -119,44 +160,6 @@ public class Grafo {
         }       
         return false;
     }*/
-
-    public Grafo candidatos(ArrayList<String> candidatos, String genero, int tiempo){
-        
-        Solucion solucion = new Solucion(tiempo);
-        //tiene que estar ordenado el de candidatos
-        while(!candidatos.isEmpty() && !solucion.esSolucion()){
-            ArcoAfin tmp = seleccionar(candidatos, genero);
-            candidatos.remove(tmp.getGenDestino());
-            solucion.add(tmp);
-            solucion.setSuma(tmp.getOcurrencias());
-            genero = tmp.getGenDestino();
-        }
-        if(solucion.esSolucion()){
-           return solucion.getSolucion();
-        }
-        return null;
-    }
-
-    public ArcoAfin seleccionar(ArrayList<String> candidatos, String genero){
-        ArrayList<String> adyacentes = new ArrayList<>();
-        String valorText = " ";
-        Integer valorInt = 0;
-        adyacentes.addAll(this.obtenerAdyacentesOrdenados(genero, 1));
-        
-        for (Map.Entry<String, Integer> ady : this.vertGeneros.get(genero).entrySet()) {
-           
-            if(adyacentes.get(0).equals(ady.getKey())){
-            valorText = (String)ady.getKey();
-
-            valorInt = (Integer)ady.getValue();
-            }
-
-        }       
-
-        ArcoAfin arco = new ArcoAfin(genero, valorText, valorInt);
-        return arco;
-    }
-
 
 
     /*
