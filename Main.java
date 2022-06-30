@@ -4,10 +4,10 @@ public class Main {
     public static void main(String[] args) {
      //   CSVReader reader = new CSVReader("Datasets2daEtapa/dataset1.csv");
      //   reader.leer();
-     Indice index = new Indice("./Datasets2daEtapa/dataset1.csv");
+     Indice index = new Indice("./Datasets2daEtapa/dataset2.csv");
      index.obtenerDatos();
-     index.obtenerMasBuscados("viajes", 5);
-     index.obtenerCaminoMayorPeso("viajes", 5);
+     index.obtenerMasBuscados("viajes", 4);
+     index.obtenerCaminoMayorPeso("cultura", 5);
 
      //comentario para push
        // Timer ti = new Timer();

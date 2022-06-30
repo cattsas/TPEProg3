@@ -95,23 +95,15 @@ public class Grafo {
         String valorText = " ";
         Integer valorInt = 0;
         adyacentes.addAll(this.obtenerAdyacentesOrdenados(genero, 1));
-        
-        for (Map.Entry<String, Integer> ady : this.vertGeneros.get(genero).entrySet()) {
-           
-            if(adyacentes.get(0).equals(ady.getKey())){
-            valorText = (String)ady.getKey();
-
-            valorInt = (Integer)ady.getValue();
-            }
-
-        }       
+        valorText = adyacentes.get(0);
+        valorInt = this.vertGeneros.get(genero).get(adyacentes.get(0));
 
         ArcoAfin arco = new ArcoAfin(genero, valorText, valorInt);
         return arco;
     }
 
 
-    
+
     /* 
     public ArrayList<String> caminoMayorPeso(String origen){
         this.estado.clearMayor();;
