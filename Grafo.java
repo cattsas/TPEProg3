@@ -40,6 +40,7 @@ public class Grafo {
 
     public ArrayList<String> obtenerAdyacentesOrdenados(String genero, int cantidad){
         List<Map.Entry<String, Integer>> entryList = new ArrayList<Map.Entry<String, Integer>>(this.vertGeneros.get(genero).entrySet());
+        
         Collections.sort(entryList, new Comparator<Map.Entry<String, Integer>>() {
             @Override
             public int compare(Map.Entry<String, Integer> e1,

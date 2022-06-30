@@ -6,7 +6,7 @@ public class Main {
      //   reader.leer();
      Indice index = new Indice("Datasets2daEtapa/dataset1.csv");
      index.obtenerDatos();
-     index.obtenerMasBuscados("asd", 1);
+     index.obtenerMasBuscados("informática", 3);
      //comentario para push
        // Timer ti = new Timer();
       //  ti.start();
