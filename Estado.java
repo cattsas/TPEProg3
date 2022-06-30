@@ -38,7 +38,7 @@ public class Estado {
         return new ArrayList<>(this.caminoParcial);
     }
 
-    public ArrayList<String> getCaminoMayor(){
+    public ArrayList<String> getCaminoMayorPeso(){
         return new ArrayList<>(this.caminoMayor);
     }
     public void clearMayor(){

@@ -12,13 +12,13 @@ import java.util.Iterator;
 
 public class Grafo {
     private HashMap<String,HashMap<String,Integer>> vertGeneros;
-    private HashSet <String> visitados;
+    private ArrayList <String> visitados;
 
     private Estado estado;
 
     public Grafo() {
         this.vertGeneros = new HashMap<>();
-        this.visitados = new HashSet<>();
+        this.visitados = new ArrayList<>();
         this.estado = new Estado();
     }
 
@@ -71,8 +71,8 @@ public class Grafo {
         this.estado.add(origen);
         this.visitados.add(origen);
         otrocaminoMayorPeso(origen,  this.estado);
-        System.out.println(this.estado.getCaminoMayor());
-        return  this.estado.getCaminoMayor();
+        System.out.println(this.estado.getCaminoMayorPeso());
+        return  this.estado.getCaminoMayorPeso();
 
     }
 
