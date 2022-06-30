@@ -1,12 +1,14 @@
 import java.util.ArrayList;
 
 public class Solucion {
-    private Grafo grafo ;   
+    private ArrayList<String> solucion ;  
+    private Integer sumatoria; 
     private Integer tiempo;
     private Integer tiempoACompletar;
 
     public Solucion(Integer tiempo){
-        this.grafo =  new Grafo();
+        this.solucion =  new ArrayList();
+        this.sumatoria = 0;
         this.tiempo = 0;
         this.tiempoACompletar = tiempo;
     }
@@ -16,16 +18,15 @@ public class Solucion {
     }
 
     public void add(ArcoAfin arco){
-        this.grafo.addVertice(arco.getGenOrigen());
-        this.grafo.addArco(arco.getGenOrigen(), arco.getGenDestino(), arco.getOcurrencias());
+        this.solucion.add(arco.getGenDestino());
+        this.sumatoria+= arco.getOcurrencias();
+        this.tiempo++;
     }
 
-    public Grafo getSolucion(){
-        return this.grafo;
+    public ArrayList<String> getSolucion(){
+        return this.solucion;
     }
 
-    public void setSuma(Integer suma){
-        this.tiempo += suma;
-    }
+ 
     
 }
