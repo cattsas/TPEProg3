@@ -13,9 +13,23 @@ import java.util.Iterator;
 public class Grafo {
     private HashMap<String,HashMap<String,Integer>> vertGeneros;
 
+    private HashMap<String, String> pintados;
+    private ArrayList<String> caminoRecorrido;
+    private String origen;
+    private Grafo aux;
 
     public Grafo() {
         this.vertGeneros = new HashMap<>();
+        this.pintados = new HashMap<>();
+        this.caminoRecorrido = new ArrayList<>();
+
+    }
+
+    public void setOrigen(String origen){
+        this.origen = origen;
+    }
+    public String getOrigen(){
+        return this.origen;
     }
 
     public void addVertice(String nomGen) {
@@ -47,6 +61,10 @@ public class Grafo {
         }
 
 
+    }
+
+    public HashMap<String,Integer> obtenerAdyacentes(String genero){
+        return new HashMap<String,Integer>(this.vertGeneros.get(genero));
     }
 
 
@@ -98,7 +116,6 @@ public class Grafo {
         String valorText = " ";
         Integer valorInt = 0;
         int i = 0;
-        int mejorSolNoRep = 0;
         ArrayList<String> adyOrder = this.obtenerAdyacentesOrdenados(genero, tiempo);
         while(i<candidatos.size()){
             if(!solucion.contains(adyOrder.get(i))){
@@ -115,7 +132,55 @@ public class Grafo {
         return arco;
     }
 
+    public boolean contieneVertice(String genero){
+        return this.vertGeneros.containsKey(genero);
+    }
 
+    public Grafo buscarCiclos(String genero){
+        if (!this.vertGeneros.containsKey(genero)) {
+            return null;}
+        //guardamos el origen en una variable de clase para acceder a ella en caso de que haya un ciclo al origen
+        this.aux = new Grafo();
+        this.aux.setOrigen(genero);
+        //se pinta cada vertice del grafo de blanco
+        for (String gen: this.vertGeneros.keySet()) {
+            pintados.put(gen, "blanco");
+        }
+        this.buscarCiclos_visit(genero);   
+     
+        for(String gen: this.vertGeneros.keySet()){
+            if(pintados.get(gen).equals("blanco")){
+                this.buscarCiclos_visit(gen);
+            }
+
+
+            return this.aux;
+        }
+    
+        private void buscarCiclos_visit(String genero){
+            pintados.replace(genero,"blanco", "amarillo");
+            caminoRecorrido.add(genero);
+
+            for(String gen: this.vertGeneros.get(genero).keySet()){
+                if(pintados.get(gen).equals("blanco")){
+                    buscarCiclos_visit(gen);
+
+                }
+
+                else if((pintados.get(gen)).equals("amarillo") && gen.equals(this.aux.getOrigen())){
+                    caminoRecorrido.add(gen);
+                    for(int i = 0; i<caminoRecorrido.size()-1; i++){
+                        this.aux.addVertice(caminoRecorrido.get(i));
+                        this.aux.addArco(caminoRecorrido.get(i), caminoRecorrido.get(i+1), 1);
+                        
+                    }
+                    
+                }
+            }
+            pintados.replace(genero, "amarillo", "negro");
+            caminoRecorrido.remove(genero);
+
+            }
 
     /* 
     public ArrayList<String> caminoMayorPeso(String origen){
@@ -143,11 +208,11 @@ public class Grafo {
             while(it_ady.hasNext()){
                 Map.Entry<String, Integer> new_Map = (Map.Entry<String, Integer>)it_ady.next();
                 if(!this.visitados.contains(new_Map.getKey())){
-                    this.estado.addCaminoParcial(new_Map.getKey());
+                    this.estado.addcaminoRecorrido(new_Map.getKey());
                     this.estado.sumar(new_Map.getValue());
                     this.visitados.add(new_Map.getKey());
                     otrocaminoMayorPeso(new_Map.getKey(), estado);
-                    this.estado.removeCaminoParcial(new_Map.getKey());
+                    this.estado.removecaminoRecorrido(new_Map.getKey());
                     this.estado.restar(new_Map.getValue());
                     this.visitados.remove(new_Map.getKey());
                  

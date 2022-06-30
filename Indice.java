@@ -27,6 +27,13 @@ public class Indice {
 
     }
 
+    public Grafo obtenerAfines(String genero){
+       
+        System.out.println(this.generos.buscarCiclos(genero));
+        return null;
+    }
+
+
     
 
 
