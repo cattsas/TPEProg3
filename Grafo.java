@@ -12,6 +12,8 @@ import java.util.Iterator;
 
 public class Grafo {
     private HashMap<String,HashMap<String,Integer>> vertGeneros;
+    private HashMap<String,String> colores;
+
     private HashSet <String> visitados;
 
     private Estado estado;
@@ -19,6 +21,8 @@ public class Grafo {
     public Grafo() {
         this.vertGeneros = new HashMap<>();
         this.visitados = new HashSet<>();
+        this.colores = new HashMap<>();
+
         this.estado = new Estado();
     }
 
@@ -34,7 +38,6 @@ public class Grafo {
           if (vertGeneros.get(vertGenOrigen).containsKey(vertGenDestino)){
                 Integer numero=(Integer)vertGeneros.get(vertGenOrigen).get(vertGenDestino);
               vertGeneros.get(vertGenOrigen).replace(vertGenDestino,numero,numero+1);
-              System.out.println("numero: "+numero);
           }
           else{
             vertGeneros.get(vertGenOrigen).put(vertGenDestino,1);}
@@ -56,13 +59,17 @@ public class Grafo {
         
         ArrayList lista = new ArrayList<>();
         int i = 0;
+
         while(i<entryList.size() && i<cantidad ){
             lista.add(entryList.get(i).getKey());
             i++;
         }
+         
         System.out.println(lista);
+   
         return lista;
     }
+    /* 
     public ArrayList<String> caminoMayorPeso(String origen){
         this.estado.clearMayor();;
         this.estado.clearCamino();;
@@ -109,7 +116,47 @@ public class Grafo {
             }
         }       
         return false;
+    }*/
+
+    public ArrayList<String> candidatos(ArrayList<String> candidatos, String genero, int tiempo){
+        Solucion solucion = new Solucion(tiempo);
+        //tiene que estar ordenado el de candidatos
+        while(!candidatos.isEmpty() && !solucion.esSolucion()){
+            ArcoAfin tmp = seleccionar(candidatos, genero);
+            candidatos.remove(tmp.getGenDestino());
+            solucion.add(tmp.getGenDestino());
+            solucion.setSuma(tmp.getOcurrencias());
+            genero = tmp.getGenDestino();
+        }
+        if(solucion.esSolucion()){
+           return solucion.getSolucion();
+        }
+        return null;
     }
+
+    public ArcoAfin seleccionar(ArrayList<String> candidatos, String genero){
+        ArrayList<String> adyacentes = new ArrayList<>();
+        String valorText = " ";
+        Integer valorInt = 0;
+        adyacentes.addAll(this.obtenerAdyacentesOrdenados(genero, 1));
+        
+        System.out.println(adyacentes.get(0));
+        for (Map.Entry<String, Integer> ady : this.vertGeneros.get(genero).entrySet()) {
+           
+            if(adyacentes.get(0).equals(ady.getKey())){
+            valorText = (String)ady.getKey();
+
+            valorInt = (Integer)ady.getValue();
+            }
+
+        }       
+
+        ArcoAfin arco = new ArcoAfin(genero, valorText, valorInt);
+        return arco;
+    }
+
+
+
     /*
     public ArrayList<String> caminoMayorPeso(String genero, String inicial){
         ArrayList<String> solucion = new ArrayList<>();

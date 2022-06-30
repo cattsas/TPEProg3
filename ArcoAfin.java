@@ -1,10 +1,13 @@
 public class ArcoAfin {
    private Integer ocurrencias;
-    private Genero genDestino;
+   private String genOrigen;
+    private String genDestino;
 
-    public ArcoAfin(Genero genDestino,Integer ocurrencias ) {
+    public ArcoAfin(String genOrigen, String genDestino,Integer ocurrencias ) {
         this.ocurrencias = ocurrencias;
+        this.genOrigen = genOrigen;
         this.genDestino = genDestino;
+
     }
 
     public Integer getOcurrencias() {
@@ -15,11 +18,11 @@ public class ArcoAfin {
         this.ocurrencias++;
     }
 
-    public Genero getGenDestino() {
-        return genDestino;
+    public String getGenDestino() {
+        return this.genDestino;
     }
 
-    public void setGenDestino(Genero genDestino) {
+    public void setGenDestino(String genDestino) {
         this.genDestino = genDestino;
     }
 }

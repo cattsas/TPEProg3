@@ -16,8 +16,10 @@ public class Indice {
 
     }
 
-    public void obtenerCaminoMasLargo(String genero){
-        this.generos.caminoMayorPeso(genero);
+    public void obtenerCaminoMasLargo(String genero, int tiempo){
+        
+        System.out.println(this.generos.candidatos(this.generos.obtenerAdyacentesOrdenados(genero, tiempo), genero, tiempo));
+
     }
 
     
