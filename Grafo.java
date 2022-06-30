@@ -2,19 +2,23 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.SortedSet;
 import java.util.TreeMap;
 import java.util.TreeSet;
-
-import javax.swing.text.html.HTMLDocument.Iterator;
+import java.util.Iterator;
 
 public class Grafo {
     private HashMap<String,HashMap<String,Integer>> vertGeneros;
+    private HashSet <String> visitados;
+    private Estado estado;
 
     public Grafo() {
         this.vertGeneros = new HashMap<>();
+        this.visitados = new HashSet<>();
+        this.estado = new Estado();
     }
 
     public void addVertice(String nomGen) {
@@ -58,52 +62,68 @@ public class Grafo {
         System.out.println(lista);
         return lista;
     }
+    public ArrayList<String> caminoMayorPeso2(String origen){
+        ArrayList<String> caminoParcial = new ArrayList<>();
+        estado.add(origen);
+        this.visitados.add(origen);
+        caminoMayorPeso2(origen, estado);
+        return this.caminoMayor;
 
-    public ArrayList<String> caminoMayorPeso(String genero){
+    }
+
+    private ArrayList<String>caminoMayorPeso2_(String origen, Estado estado){
+        if(o)
+    }
+    public ArrayList<String> caminoMayorPeso(String genero, String inicial){
         ArrayList<String> solucion = new ArrayList<>();
-        String tmp = genero;
-         solucion.clear();
-        solucion.add(tmp);
-        HashMap <String, Integer> adyacentes = this.vertGeneros.get(tmp);
-        while(!adyacentes.isEmpty() && noIncluido(tmp, solucion)){
-            tmp = obtenerMayorAdyacente(this.vertGeneros.get(tmp));
-            solucion.add(tmp);
+        this.visitados.add(genero);
+        //que todos los adyacentes del genero esten en los visitados
+        ArrayList<String> adyacentes = new ArrayList<>();
+        for (Map.Entry<String, Integer> ady : this.vertGeneros.get(genero).entrySet()) {
+            adyacentes.add((String)ady.getKey());
+        }       
+        System.out.println("holaaa");
+        System.out.println(adyacentes);
+        System.out.println(this.visitados);
+
+        if(this.visitados.containsAll(adyacentes)){
+        }else{
+            Iterator<Map.Entry<String,Integer>> it_ady = this.vertGeneros.get(genero).entrySet().iterator();
+            while(it_ady.hasNext()){
+                Map.Entry<String, Integer> new_Map = (Map.Entry<String, Integer>)it_ady.next();
+                if(!this.visitados.contains(new_Map.getKey())){
+                    ArrayList<String> camino = new ArrayList<>();
+                    camino.addAll(caminoMayorPeso(genero, null));
+                    if(this.getTamanio(camino)>= this.getTamanio(solucion)){
+                        solucion.clear();
+                        System.out.println(this.getTamanio(camino));
+
+                        System.out.println(camino);
+                        System.out.println(genero);
+
+                        solucion.add(genero);
+                        solucion.addAll(camino);
+                    }
+                }
+            }
 
         }
-        // while (!this.vertGeneros.get(tmp).isEmpty() && notNewAyacente(tmp, solucion)) {
-        //     tmp = generoMayorPeso(this.generos.get(tmp)); // se queda con el genero de mayor peso
-        //     solucion.add(tmp);
-        // }
+        this.visitados.remove(genero);
+
         System.out.println(solucion);
         return solucion;
     }
-    private boolean noIncluido(String genero, ArrayList<String> solucion){
-        for(HashMap.Entry<String, Integer> gen : this.vertGeneros.get(genero).entrySet()){
-            String nombre =gen.getKey();
-            if(!solucion.contains(nombre)){
-                return true;
-            }
-            System.out.println(gen.getKey());
-            System.out.println(solucion);
 
-            System.out.println(solucion.contains((String)gen.getKey()));
+
+
+    public int getTamanio(ArrayList<String> camino){
+        int tamanio = 0;
+        for(int i = 0; i<camino.size()-1; i++){
+            System.out.println(".as.a.sd" + this.vertGeneros.get(camino.get(i)).get(camino.get(i+1)));
+            tamanio += this.vertGeneros.get(camino.get(i)).get(camino.get(i+1));
 
         }
-        return false;
-    }
-
-
-    
-    private String obtenerMayorAdyacente(HashMap<String, Integer> adyacentes){
-        String mayor = " ";
-        int mayorNum = 0;
-        for(HashMap.Entry<String, Integer> gen : adyacentes.entrySet()){
-            if (gen.getValue() > mayorNum){
-                mayor = gen.getKey();
-                mayorNum = gen.getValue();
-            }
-        }
-        return mayor;
+        return tamanio;
     }
 
     @Override

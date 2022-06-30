@@ -17,7 +17,7 @@ public class Indice {
     }
 
     public void obtenerCaminoMasLargo(String genero){
-        this.generos.caminoMayorPeso(genero);
+        this.generos.caminoMayorPeso(genero, " ");
     }
 
     
