@@ -153,7 +153,7 @@ public class Grafo {
                 this.buscarCiclos_visit(gen);
             }
 
-
+        }
             return this.aux;
         }
     
@@ -164,9 +164,7 @@ public class Grafo {
             for(String gen: this.vertGeneros.get(genero).keySet()){
                 if(pintados.get(gen).equals("blanco")){
                     buscarCiclos_visit(gen);
-
                 }
-
                 else if((pintados.get(gen)).equals("amarillo") && gen.equals(this.aux.getOrigen())){
                     caminoRecorrido.add(gen);
                     for(int i = 0; i<caminoRecorrido.size()-1; i++){
