@@ -78,7 +78,7 @@ public class Grafo {
         Solucion solucion = new Solucion(tiempo);
         //tiene que estar ordenado el de candidatos
         while(!candidatos.isEmpty() && !solucion.esSolucion()){
-            ArcoAfin tmp = seleccionar(candidatos, genero);
+            ArcoAfin tmp = seleccionar(candidatos, solucion.getSolucion(), genero, tiempo);
             candidatos.remove(tmp.getGenDestino());
             solucion.add(tmp);
             genero = tmp.getGenDestino();
@@ -89,11 +89,21 @@ public class Grafo {
         return null;
     }
 
-    public ArcoAfin seleccionar(ArrayList<String> candidatos, String genero){
+    public ArcoAfin seleccionar(ArrayList<String> candidatos, ArrayList<String> solucion, String genero, int tiempo){
         ArrayList<String> adyacentes = new ArrayList<>();
         String valorText = " ";
         Integer valorInt = 0;
-        adyacentes.addAll(this.obtenerAdyacentesOrdenados(genero, 1));
+        int i = 0;
+        int mejorSolNoRep = 0;
+        ArrayList<String> adyOrder = this.obtenerAdyacentesOrdenados(genero, tiempo);
+        while(i<candidatos.size()){
+            if(!solucion.contains(adyOrder.get(i))){
+                adyacentes.add(adyOrder.get(i));
+                i=candidatos.size();
+            }else{
+                i++;
+            }
+        }
         valorText = adyacentes.get(0);
         valorInt = this.vertGeneros.get(genero).get(adyacentes.get(0));
 

@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Indice {
     private CSVReader reader;
     private Grafo generos;
@@ -19,8 +21,10 @@ public class Indice {
     }
 
     public void obtenerCaminoMayorPeso(String genero, int tiempo){
-        
-        System.out.println(this.generos.candidatos(this.generos.obtenerAdyacentesOrdenados(genero, tiempo), genero, tiempo));
+        ArrayList <String> lista = new ArrayList<>();
+        lista.add(genero);
+        lista.addAll(this.generos.candidatos(this.generos.obtenerAdyacentesOrdenados(genero, tiempo), genero, tiempo));
+        System.out.println(lista);
 
     }
 
