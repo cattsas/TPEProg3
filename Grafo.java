@@ -64,6 +64,10 @@ public class Grafo {
         return lista;
     }
     public ArrayList<String> caminoMayorPeso(String origen){
+        this.estado.clearMayor();;
+        this.estado.clearCamino();;
+
+        this.visitados.clear();
         this.estado.add(origen);
         this.visitados.add(origen);
         otrocaminoMayorPeso(origen,  this.estado);

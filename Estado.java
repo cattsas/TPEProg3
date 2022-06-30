@@ -45,6 +45,10 @@ public class Estado {
         this.caminoMayor.clear();
     }
 
+    public void clearCamino(){
+        this.caminoParcial.clear();
+    }
+
     public void sumar(int total){
         this.suma += total;
     }
