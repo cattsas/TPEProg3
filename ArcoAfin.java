@@ -18,6 +18,9 @@ public class ArcoAfin {
         this.ocurrencias++;
     }
 
+    public String getGenOrigen() {
+        return this.genOrigen;
+    }
     public String getGenDestino() {
         return this.genDestino;
     }

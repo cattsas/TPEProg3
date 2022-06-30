@@ -1,26 +1,27 @@
 import java.util.ArrayList;
 
 public class Solucion {
-    private ArrayList<String> camino;
+    private Grafo grafo ;   
     private Integer tiempo;
     private Integer tiempoACompletar;
 
-    public Solucion(int tiempo){
-        this.camino = new ArrayList<>();
+    public Solucion(Integer tiempo){
+        this.grafo =  new Grafo();
         this.tiempo = 0;
-        this.tiempo = tiempoACompletar;
+        this.tiempoACompletar = tiempo;
     }
 
     public boolean esSolucion(){
-        return tiempo == tiempoACompletar;
+        return tiempo.equals(tiempoACompletar);
     }
 
-    public void add(String genero){
-        camino.add(genero);
+    public void add(ArcoAfin arco){
+        this.grafo.addVertice(arco.getGenOrigen());
+        this.grafo.addArco(arco.getGenOrigen(), arco.getGenDestino(), arco.getOcurrencias());
     }
 
-    public ArrayList<String> getSolucion(){
-        return new ArrayList<String>(this.camino);
+    public Grafo getSolucion(){
+        return this.grafo;
     }
 
     public void setSuma(Integer suma){

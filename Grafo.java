@@ -12,18 +12,10 @@ import java.util.Iterator;
 
 public class Grafo {
     private HashMap<String,HashMap<String,Integer>> vertGeneros;
-    private HashMap<String,String> colores;
 
-    private HashSet <String> visitados;
-
-    private Estado estado;
 
     public Grafo() {
         this.vertGeneros = new HashMap<>();
-        this.visitados = new HashSet<>();
-        this.colores = new HashMap<>();
-
-        this.estado = new Estado();
     }
 
     public void addVertice(String nomGen) {
@@ -40,11 +32,23 @@ public class Grafo {
               vertGeneros.get(vertGenOrigen).replace(vertGenDestino,numero,numero+1);
           }
           else{
-            vertGeneros.get(vertGenOrigen).put(vertGenDestino,1);}
+            vertGeneros.get(vertGenOrigen).put(vertGenDestino,1);
+            }
         }
 
 
     }
+
+    public void addArco(String vertGenOrigen, String vertGenDestino, Integer ocurrencias) {
+
+        if (this.vertGeneros.containsKey(vertGenOrigen)){
+
+            this.vertGeneros.get(vertGenOrigen).put(vertGenDestino,ocurrencias);
+        }
+
+
+    }
+
 
     public ArrayList<String> obtenerAdyacentesOrdenados(String genero, int cantidad){
         List<Map.Entry<String, Integer>> entryList = new ArrayList<Map.Entry<String, Integer>>(this.vertGeneros.get(genero).entrySet());
@@ -64,9 +68,7 @@ public class Grafo {
             lista.add(entryList.get(i).getKey());
             i++;
         }
-         
-        System.out.println(lista);
-   
+            
         return lista;
     }
     /* 
@@ -118,13 +120,14 @@ public class Grafo {
         return false;
     }*/
 
-    public ArrayList<String> candidatos(ArrayList<String> candidatos, String genero, int tiempo){
+    public Grafo candidatos(ArrayList<String> candidatos, String genero, int tiempo){
+        
         Solucion solucion = new Solucion(tiempo);
         //tiene que estar ordenado el de candidatos
         while(!candidatos.isEmpty() && !solucion.esSolucion()){
             ArcoAfin tmp = seleccionar(candidatos, genero);
             candidatos.remove(tmp.getGenDestino());
-            solucion.add(tmp.getGenDestino());
+            solucion.add(tmp);
             solucion.setSuma(tmp.getOcurrencias());
             genero = tmp.getGenDestino();
         }
@@ -140,7 +143,6 @@ public class Grafo {
         Integer valorInt = 0;
         adyacentes.addAll(this.obtenerAdyacentesOrdenados(genero, 1));
         
-        System.out.println(adyacentes.get(0));
         for (Map.Entry<String, Integer> ady : this.vertGeneros.get(genero).entrySet()) {
            
             if(adyacentes.get(0).equals(ady.getKey())){
@@ -214,7 +216,7 @@ public class Grafo {
     public String toString() {
         String cadena="";
         for (HashMap.Entry<String, HashMap<String, Integer>> entry : vertGeneros.entrySet()) {
-            cadena+=("Clave: "+  entry.getKey() + " - Valor: " +entry.getValue());
+            cadena+=("- Clave: "+  entry.getKey() + " - Valor: " +entry.getValue());
         }
 
     return cadena;
