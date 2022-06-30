@@ -12,13 +12,13 @@ import java.util.Iterator;
 
 public class Grafo {
     private HashMap<String,HashMap<String,Integer>> vertGeneros;
-    private ArrayList <String> visitados;
+    private HashSet <String> visitados;
 
     private Estado estado;
 
     public Grafo() {
         this.vertGeneros = new HashMap<>();
-        this.visitados = new ArrayList<>();
+        this.visitados = new HashSet<>();
         this.estado = new Estado();
     }
 
