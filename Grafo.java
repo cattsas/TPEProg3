@@ -63,16 +63,16 @@ public class Grafo {
         System.out.println(lista);
         return lista;
     }
-    public ArrayList<String> caminoMayorPeso2(String origen){
+    public ArrayList<String> caminoMayorPeso(String origen){
         this.estado.add(origen);
         this.visitados.add(origen);
-        caminoMayorPeso2_(origen,  this.estado);
+        otrocaminoMayorPeso(origen,  this.estado);
         System.out.println(this.estado.getCaminoMayor());
         return  this.estado.getCaminoMayor();
 
     }
 
-    private void  caminoMayorPeso2_(String origen, Estado estado){
+    private void  otrocaminoMayorPeso(String origen, Estado estado){
         if(!this.adyacentesEnCamino(origen,estado)){
             if(estado.getSuma()>=this.estado.getSuma()){
                 this.estado.clearMayor();
@@ -87,7 +87,7 @@ public class Grafo {
                     this.estado.addCaminoParcial(new_Map.getKey());
                     this.estado.sumar(new_Map.getValue());
                     this.visitados.add(new_Map.getKey());
-                    caminoMayorPeso2_(new_Map.getKey(), estado);
+                    otrocaminoMayorPeso(new_Map.getKey(), estado);
                     this.estado.removeCaminoParcial(new_Map.getKey());
                     this.estado.restar(new_Map.getValue());
                     this.visitados.remove(new_Map.getKey());
@@ -106,6 +106,7 @@ public class Grafo {
         }       
         return false;
     }
+    /*
     public ArrayList<String> caminoMayorPeso(String genero, String inicial){
         ArrayList<String> solucion = new ArrayList<>();
         this.visitados.add(genero);
@@ -156,6 +157,7 @@ public class Grafo {
         }
         return tamanio;
     }
+     */
 
     @Override
     public String toString() {
