@@ -75,7 +75,7 @@ public class Grafo {
             @Override
             public int compare(Map.Entry<String, Integer> e1,
                     Map.Entry<String, Integer> e2) {
-                return -e1.getValue().compareTo(e2.getValue());//**************ese signo menos esta bien?***************
+                return -e1.getValue().compareTo(e2.getValue());
             }
         });
         
