@@ -75,7 +75,7 @@ public class Grafo {
             @Override
             public int compare(Map.Entry<String, Integer> e1,
                     Map.Entry<String, Integer> e2) {
-                return -e1.getValue().compareTo(e2.getValue());
+                return -e1.getValue().compareTo(e2.getValue());//**************ese signo menos esta bien?***************
             }
         });
         
@@ -86,7 +86,7 @@ public class Grafo {
             lista.add(entryList.get(i).getKey());
             i++;
         }
-            
+
         return lista;
     }
 
@@ -148,12 +148,12 @@ public class Grafo {
         }
         this.buscarCiclos_visit(genero);   
      
-        for(String gen: this.vertGeneros.keySet()){
+     /*   for(String gen: this.vertGeneros.keySet()){
             if(pintados.get(gen).equals("blanco")){
                 this.buscarCiclos_visit(gen);
             }
 
-        }
+        }*/
             return this.aux;
         }
     

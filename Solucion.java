@@ -23,6 +23,10 @@ public class Solucion {
         this.tiempo++;
     }
 
+    public Integer getSumatoria() {
+        return sumatoria;
+    }
+
     public ArrayList<String> getSolucion(){
         return this.solucion;
     }

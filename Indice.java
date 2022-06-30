@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 
-public class Indice {
+public class
+Indice {
     private CSVReader reader;
     private Grafo generos;
 
