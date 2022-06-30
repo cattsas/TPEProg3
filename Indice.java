@@ -22,7 +22,6 @@ public class Indice {
 
     public void obtenerCaminoMayorPeso(String genero, int tiempo){
         ArrayList <String> lista = new ArrayList<>();
-        lista.add(genero);
         lista.addAll(this.generos.candidatos(this.generos.obtenerAdyacentesOrdenados(genero, tiempo), genero, tiempo));
         System.out.println(lista);
 

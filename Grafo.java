@@ -76,6 +76,10 @@ public class Grafo {
     public ArrayList<String> candidatos(ArrayList<String> candidatos, String genero, int tiempo){
         
         Solucion solucion = new Solucion(tiempo);
+        ArcoAfin arco = new ArcoAfin(null, genero, 0);
+
+        solucion.add(arco);
+
         //tiene que estar ordenado el de candidatos
         while(!candidatos.isEmpty() && !solucion.esSolucion()){
             ArcoAfin tmp = seleccionar(candidatos, solucion.getSolucion(), genero, tiempo);
