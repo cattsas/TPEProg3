@@ -13,6 +13,7 @@ import java.util.Iterator;
 public class Grafo {
     private HashMap<String,HashMap<String,Integer>> vertGeneros;
     private HashSet <String> visitados;
+
     private Estado estado;
 
     public Grafo() {
@@ -63,16 +64,47 @@ public class Grafo {
         return lista;
     }
     public ArrayList<String> caminoMayorPeso2(String origen){
-        ArrayList<String> caminoParcial = new ArrayList<>();
-        estado.add(origen);
+        this.estado.add(origen);
         this.visitados.add(origen);
-        caminoMayorPeso2(origen, estado);
-        return this.caminoMayor;
+        caminoMayorPeso2_(origen,  this.estado);
+        System.out.println(this.estado.getCaminoMayor());
+        return  this.estado.getCaminoMayor();
 
     }
 
-    private ArrayList<String>caminoMayorPeso2_(String origen, Estado estado){
-        if(o)
+    private void  caminoMayorPeso2_(String origen, Estado estado){
+        if(!this.adyacentesEnCamino(origen,estado)){
+            if(estado.getSuma()>=this.estado.getSuma()){
+                this.estado.clearMayor();
+                this.estado.addAllCaminoMayor(this.estado.getCamino());
+                this.estado.cambiarSuma(estado.getSuma());
+            }
+        }else{
+            Iterator<Map.Entry<String,Integer>> it_ady = this.vertGeneros.get(origen).entrySet().iterator();
+            while(it_ady.hasNext()){
+                Map.Entry<String, Integer> new_Map = (Map.Entry<String, Integer>)it_ady.next();
+                if(!this.visitados.contains(new_Map.getKey())){
+                    this.estado.addCaminoParcial(new_Map.getKey());
+                    this.estado.sumar(new_Map.getValue());
+                    this.visitados.add(new_Map.getKey());
+                    caminoMayorPeso2_(new_Map.getKey(), estado);
+                    this.estado.removeCaminoParcial(new_Map.getKey());
+                    this.estado.restar(new_Map.getValue());
+                    this.visitados.remove(new_Map.getKey());
+                 
+                }
+            }
+        }
+    }
+
+    public boolean adyacentesEnCamino(String genero, Estado estado){
+
+        for (Map.Entry<String, Integer> ady : this.vertGeneros.get(genero).entrySet()) {
+            if(!estado.estaEnCamino((String)ady.getKey())){
+                return true;
+            }
+        }       
+        return false;
     }
     public ArrayList<String> caminoMayorPeso(String genero, String inicial){
         ArrayList<String> solucion = new ArrayList<>();
@@ -83,8 +115,7 @@ public class Grafo {
             adyacentes.add((String)ady.getKey());
         }       
         System.out.println("holaaa");
-        System.out.println(adyacentes);
-        System.out.println(this.visitados);
+
 
         if(this.visitados.containsAll(adyacentes)){
         }else{

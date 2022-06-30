@@ -7,7 +7,7 @@ public class Main {
      Indice index = new Indice("Datasets2daEtapa/dataset1.csv");
      index.obtenerDatos();
      index.obtenerMasBuscados("viajes", 5);
-     index.obtenerCaminoMasLargo("servicios");
+     index.obtenerCaminoMasLargo("fotografía");
 
      //comentario para push
        // Timer ti = new Timer();
