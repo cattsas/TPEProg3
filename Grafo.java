@@ -59,7 +59,52 @@ public class Grafo {
         return lista;
     }
 
+    public ArrayList<String> caminoMayorPeso(String genero){
+        ArrayList<String> solucion = new ArrayList<>();
+        String tmp = genero;
+         solucion.clear();
+        solucion.add(tmp);
+        HashMap <String, Integer> adyacentes = this.vertGeneros.get(tmp);
+        while(!adyacentes.isEmpty() && noIncluido(tmp, solucion)){
+            tmp = obtenerMayorAdyacente(this.vertGeneros.get(tmp));
+            solucion.add(tmp);
 
+        }
+        // while (!this.vertGeneros.get(tmp).isEmpty() && notNewAyacente(tmp, solucion)) {
+        //     tmp = generoMayorPeso(this.generos.get(tmp)); // se queda con el genero de mayor peso
+        //     solucion.add(tmp);
+        // }
+        System.out.println(solucion);
+        return solucion;
+    }
+    private boolean noIncluido(String genero, ArrayList<String> solucion){
+        for(HashMap.Entry<String, Integer> gen : this.vertGeneros.get(genero).entrySet()){
+            String nombre =gen.getKey();
+            if(!solucion.contains(nombre)){
+                return true;
+            }
+            System.out.println(gen.getKey());
+            System.out.println(solucion);
+
+            System.out.println(solucion.contains((String)gen.getKey()));
+
+        }
+        return false;
+    }
+
+
+    
+    private String obtenerMayorAdyacente(HashMap<String, Integer> adyacentes){
+        String mayor = " ";
+        int mayorNum = 0;
+        for(HashMap.Entry<String, Integer> gen : adyacentes.entrySet()){
+            if (gen.getValue() > mayorNum){
+                mayor = gen.getKey();
+                mayorNum = gen.getValue();
+            }
+        }
+        return mayor;
+    }
 
     @Override
     public String toString() {

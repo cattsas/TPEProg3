@@ -4,19 +4,26 @@ import java.util.HashMap;
 public class Genero {
 
     private String nomGenero;
-    private HashMap afin;
+    private boolean visitado;
 
-    public Genero(String nomGenero, ArcoAfin afin) {
+    public Genero(String nomGenero) {
         this.nomGenero = nomGenero;
-        this.afin = new HashMap<String,ArcoAfin>();
+        this.visitado = false;
     }
 
     public String getNomGenero() {
-        return nomGenero;
+        return this.nomGenero;
     }
 
     public void setNomGenero(String nomGenero) {
         this.nomGenero = nomGenero;
+    }
+
+    public boolean visitado(){
+        return this.visitado;
+    }
+    public void seVisito(){
+        this.visitado=true;
     }
 
 

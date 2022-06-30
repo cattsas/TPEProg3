@@ -13,8 +13,14 @@ public class Indice {
 
     public void obtenerMasBuscados(String genero, int cantidad){
         this.generos.obtenerAdyacentesOrdenados(genero, cantidad);
-       
+
     }
+
+    public void obtenerCaminoMasLargo(String genero){
+        this.generos.caminoMayorPeso(genero);
+    }
+
+    
 
 
 }
